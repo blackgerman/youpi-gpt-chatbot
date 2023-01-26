@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "637210700236",
+    "project_id": "youpi-gpt",
+    "storage_bucket": "youpi-gpt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637210700236:android:aceb75add8d2d8ad965569",
+        "android_client_info": {
+          "package_name": "tg.tmye.front_end"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637210700236-b3dtbltcp42aperjf6mfmrh35cn293kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVV4zNhrHSJcE88LjjiiImS5D20vlBED8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637210700236-b3dtbltcp42aperjf6mfmrh35cn293kr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "637210700236-ai4ijesbkq9d65qs49t0bst6cf6e5bm9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tg.tmye.frontEnd"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
