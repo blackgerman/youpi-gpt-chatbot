@@ -1,4 +1,4 @@
-name: YoupiGPT
+name: front_end
 version: 1.0.0+1
 publish_to: none
 description: "A Web client for Chat gpt based on Flutter"
