@@ -54,7 +54,7 @@ class _RestClient implements RestClient {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'http://youpiwhatsappbot-env.eba-3aevkfzh.eu-west-3.elasticbeanstalk.com';
+        'https://youpigpt.tomiye.org';
   }
 
   final Dio _dio;

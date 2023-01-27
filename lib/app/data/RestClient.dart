@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 
 part 'RestClient.g.dart';
 
-@RestApi(baseUrl: "http://youpiwhatsappbot-env.eba-3aevkfzh.eu-west-3.elasticbeanstalk.com")
+@RestApi(baseUrl: "https://youpigpt.tomiye.org	")
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
