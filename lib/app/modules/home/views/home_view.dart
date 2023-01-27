@@ -118,7 +118,7 @@ class HomeView extends GetWidget<HomeController> {
           controller.isLoading.value
               ? Container()
               : Positioned(
-                  bottom: 0,
+                  top: MediaQuery.of(context).size.height-80,
                   left: 0,
                   child: GestureDetector(
                     onTap: () => controller.skip(),

@@ -64,7 +64,7 @@ class En {
         translation.chat_today: "Today",
         translation.chat_yesterday: "Yesterday",
         translation.network_error:
-            "There is a network or system error ! \nePlease check your internet or try again later."
+            "There is a network or system error ! \nPlease check your internet or try again later."
         /* for the other messages, translate on server side ! */
       };
 }
