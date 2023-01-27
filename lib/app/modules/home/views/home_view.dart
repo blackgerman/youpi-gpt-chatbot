@@ -100,10 +100,39 @@ class HomeView extends GetWidget<HomeController> {
                                             controller.confirmPhoneNumber(),
                                       )
                                     ],
-                                  )
+                                  ),
+                                  SizedBox(height: 100),
+                                  controller.isLoading.value
+                                      ? Container()
+                                      : GestureDetector(
+                                        onTap: () => controller.skip(),
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey.withAlpha(30),
+                                                    borderRadius: BorderRadius.circular(10)),
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 15, horizontal: 30),
+                                                margin: EdgeInsets.only(bottom: 40),
+                                                child: Text(
+                                                  'home_skip'.tr,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
                                 ],
                               ),
-
                               /*  Text(
                                 'Token is \n\n ${controller.identityToken}',
                                 style: TextStyle(fontSize: 20),
@@ -115,38 +144,7 @@ class HomeView extends GetWidget<HomeController> {
               ],
             ),
           ),
-          controller.isLoading.value
-              ? Container()
-              : Positioned(
-                  top: MediaQuery.of(context).size.height-80,
-                  left: 0,
-                  child: GestureDetector(
-                    onTap: () => controller.skip(),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey.withAlpha(30),
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 30),
-                            margin: EdgeInsets.only(bottom: 40),
-                            child: Text(
-                              'home_skip'.tr,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ))
+
         ],
       ),
     );
