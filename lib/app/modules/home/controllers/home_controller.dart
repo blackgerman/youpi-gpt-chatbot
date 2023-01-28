@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:front_end/app/Utils.dart';
 import 'package:front_end/app/intl/messages.dart';
 import 'package:front_end/app/routes/app_pages.dart';
+import 'package:front_end/app/service/AuthService.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,9 +16,12 @@ class HomeController extends GetxController {
 
   var translations = Messages().obs;
 
+  final authService = Get.find<AuthService>();
+
   @override
   void onInit() {
     super.onInit();
+
   }
 
   @override
@@ -31,6 +35,7 @@ class HomeController extends GetxController {
       /* show chat gpt animation */
       /* go the next page, */
       if (identityToken.value.isNotEmpty) {
+        authService.isAuthorized.value = true;
         Future.delayed(const Duration(milliseconds: 500), () {
           Get.offAllNamed("/chat", arguments: {"token": identityToken.value});
         });
@@ -66,6 +71,7 @@ class HomeController extends GetxController {
     SharedPreferences.getInstance().then((prefs) {
       String token = getRandomString(32);
       prefs.setString("identity", token);
+      authService.isAuthorized.value = true;
       Future.delayed(const Duration(milliseconds: 500), () {
         Get.offAllNamed("/chat", arguments: {"token": identityToken.value});
       });
@@ -83,6 +89,7 @@ class HomeController extends GetxController {
     SharedPreferences.getInstance().then((prefs) {
       if (phoneNumber.length < 6) phoneNumber = getRandomString(32);
       prefs.setString("identity", phoneNumber);
+      authService.isAuthorized.value = true;
       Future.delayed(const Duration(milliseconds: 500), () {
         Get.offAllNamed("/chat", arguments: {"token": identityToken.value});
       });

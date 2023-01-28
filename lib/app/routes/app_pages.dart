@@ -1,3 +1,4 @@
+import 'package:front_end/app/middleware/ChatGuard.dart';
 import 'package:get/get.dart';
 
 import '../modules/chat/bindings/chat_binding.dart';
@@ -11,6 +12,7 @@ class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.HOME;
+
   // static const INITIAL = Routes.CHAT;
 
   static final routes = [
@@ -20,9 +22,9 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.CHAT,
-      page: () => const ChatView(),
-      binding: ChatBinding(),
-    ),
+        name: _Paths.CHAT,
+        page: () => const ChatView(),
+        binding: ChatBinding(),
+        middlewares: [ChatGuard()]),
   ];
 }
