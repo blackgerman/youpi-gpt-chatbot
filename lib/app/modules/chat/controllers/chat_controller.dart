@@ -51,31 +51,33 @@ class ChatController extends GetxController {
     }
   }
 
-  void clearData(){
-
+  void clearData() {
     Get.dialog(
       AlertDialog(
         title: const Text('Alert'),
-        content: const Text('This action will clear all you questions and'
-            ' answers. Are you sure you want to delete them?', style: TextStyle(fontSize: 16),),
+        content: const Text(
+          'This action will clear all you questions and'
+          ' answers. Are you sure you want to delete them?',
+          style: TextStyle(fontSize: 16),
+        ),
         actions: [
           TextButton(
-            child: const Text("Yes", style: TextStyle(fontSize: 16, color: Colors.red)),
-            onPressed: () {
-              Get.back();
-              /* ==== FIREBASE LOG */
-              FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-              analytics
-                  .logEvent(name: "Clear All Data", parameters: {"token": token});
-              /*  == FIREBASE LOG == */
-              token = getRandomString(32);
-              SharedPreferences.getInstance().then((prefs) {
-                prefs.setString("identity", token);
-                /* reload data */
-                reload();
-              });
-            }
-          ),
+              child: const Text("Yes",
+                  style: TextStyle(fontSize: 16, color: Colors.red)),
+              onPressed: () {
+                Get.back();
+                /* ==== FIREBASE LOG */
+                FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+                analytics.logEvent(
+                    name: "Clear All Data", parameters: {"token": token});
+                /*  == FIREBASE LOG == */
+                token = getRandomString(32);
+                SharedPreferences.getInstance().then((prefs) {
+                  prefs.setString("identity", token);
+                  /* reload data */
+                  reload();
+                });
+              }),
           TextButton(
             child: const Text("NO", style: TextStyle(fontSize: 16)),
             onPressed: () => Get.back(),
@@ -83,8 +85,6 @@ class ChatController extends GetxController {
         ],
       ),
     );
-
-
   }
 
   @override
@@ -135,8 +135,7 @@ class ChatController extends GetxController {
       print(onError);
       /* ==== FIREBASE LOG */
       FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-      analytics.logEvent(
-          name: "AQ Error", parameters: {"error": onError});
+      analytics.logEvent(name: "AQ Error", parameters: {"error": onError});
       /*  == FIREBASE LOG == */
       /* add error */
       Answer errorAnswer = Answer(
@@ -171,8 +170,8 @@ class ChatController extends GetxController {
     }).catchError((onError) {
       /* ==== FIREBASE LOG */
       FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-      analytics.logEvent(
-          name: "LoadChats Error", parameters: {"error": onError});
+      analytics
+          .logEvent(name: "LoadChats Error", parameters: {"error": onError});
       /*  == FIREBASE LOG == */
       error.value = true;
       /* show error */
@@ -182,6 +181,10 @@ class ChatController extends GetxController {
 
   sendMessage() {
     var text = messageController.value.text;
+    text = text.trim();
+    if (text.length < 2) {
+      return;
+    }
     // debugPrint("ask -> $text");
     askQuestion(Get.deviceLocale!.languageCode, text);
   }

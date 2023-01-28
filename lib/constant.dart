@@ -10,6 +10,7 @@ class AColors {
 
 class ImageAsset {
   static final String bg = "assets/images/img_bg.jpg";
+  static final String app_icon = "assets/icon/icon.png";
 }
 
 

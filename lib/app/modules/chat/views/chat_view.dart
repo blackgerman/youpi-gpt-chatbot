@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
@@ -17,13 +18,25 @@ class ChatView extends GetWidget<ChatController> {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          leading: IconButton(icon: Icon(Icons.clear_all,color: Colors.white),
-              onPressed: ()=>controller.clearData()),
+          leading: IconButton(
+              icon: Icon(Icons.clear_all, color: Colors.white),
+              onPressed: () => controller.clearData()),
           automaticallyImplyLeading: false,
           backgroundColor: AColors.primaryColor,
           title: Text('chat_title'.tr),
           centerTitle: true,
           actions: [
+            IconButton(
+                onPressed: () {
+                  accountInfo();
+                },
+                icon: Icon(
+                  Icons.info,
+                  color: Colors.white,
+                )),
+            SizedBox(
+              width: 10,
+            ),
             IconButton(
                 onPressed: () => controller.reload(),
                 icon: Icon(
@@ -34,7 +47,8 @@ class ChatView extends GetWidget<ChatController> {
         ),
         body: Container(
           decoration: BoxDecoration(
-              image: DecorationImage(image: Image.asset(ImageAsset.bg).image, fit: BoxFit.cover)),
+              image: DecorationImage(
+                  image: Image.asset(ImageAsset.bg).image, fit: BoxFit.cover)),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Obx(() => controller.isPageLoading.value
@@ -99,7 +113,7 @@ class ChatView extends GetWidget<ChatController> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width -
-                                                80,
+                                                100,
                                             /*  height: 80,*/
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -121,7 +135,7 @@ class ChatView extends GetWidget<ChatController> {
                                                   focusNode: controller
                                                       .textfieldNode.value,
                                                   maxLines: 5,
-                                                  minLines: 1,
+                                                  minLines: 2,
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight:
@@ -130,7 +144,7 @@ class ChatView extends GetWidget<ChatController> {
                                                   decoration:
                                                       InputDecoration.collapsed(
                                                     hintStyle: TextStyle(
-                                                        fontSize: 12,
+                                                        fontSize: 16,
                                                         color: Colors.grey),
                                                     hintText:
                                                         'chat_pls_insert_message'
@@ -144,7 +158,7 @@ class ChatView extends GetWidget<ChatController> {
                                             decoration: BoxDecoration(
                                                 color: AColors.primaryColor,
                                                 shape: BoxShape.circle),
-                                            padding: const EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(20),
                                             child: Center(
                                               child: controller
                                                       .isQuestionLoading.value
@@ -167,7 +181,7 @@ class ChatView extends GetWidget<ChatController> {
                                   ),
                                   Positioned(
                                       top: 15,
-                                      right: 70,
+                                      right: 90,
                                       child: InkWell(
                                         onTap: () {
                                           ChatController.messageController.value
@@ -192,6 +206,30 @@ class ChatView extends GetWidget<ChatController> {
                       )
                     ])),
         ));
+  }
+
+  void accountInfo() {
+    /* load account info and show it in a dialog */
+    Get.dialog(
+      AlertDialog(
+        title: Text('info'.tr.capitalize!),
+        content: Text(
+          'contact_presentation'.tr,
+          style: TextStyle(fontSize: 16),
+        ),
+        actions: [
+          TextButton(
+              child:   Text('ok'.tr,
+                  style: TextStyle(fontSize: 16, color: Colors.red)),
+              onPressed: () {
+                Get.back();
+                /* ==== FIREBASE LOG */
+                FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+                analytics.logEvent(name: "Contact");
+              }),
+        ],
+      ),
+    );
   }
 }
 
