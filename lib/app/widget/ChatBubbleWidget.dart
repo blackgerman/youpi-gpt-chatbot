@@ -36,8 +36,8 @@ class ChatBubbleWidget extends StatelessWidget {
                 : MainAxisAlignment.start,
             children: <Widget>[
               this.isCustomerMessage
-                  ? Expanded(flex: 0, child: Container())
-                  : Expanded(flex: 3, child: Container()),
+                  ? Expanded(flex: 3, child: Container())
+                  : Expanded(flex: 0, child: Container()),
               Expanded(
                 flex: 6,
                 child: Container(
@@ -45,8 +45,8 @@ class ChatBubbleWidget extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         color: this.isCustomerMessage
-                            ? AColors.botMessageLight
-                            : AColors.userMessageLight,
+                            ? AColors.userMessageLight
+                            : AColors.botMessageLight,
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     padding: EdgeInsets.all(10),
                     child: Column(
@@ -100,8 +100,8 @@ class ChatBubbleWidget extends StatelessWidget {
                 ),
               ),
               this.isCustomerMessage
-                  ? Expanded(flex: 2, child: Container())
-                  : Expanded(flex: 0, child: Container()),
+                  ? Expanded(flex: 0, child: Container())
+                  : Expanded(flex: 2, child: Container()),
             ],
           ),
         ],
