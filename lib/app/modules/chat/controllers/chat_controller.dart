@@ -42,6 +42,12 @@ class ChatController extends GetxController {
     super.onInit();
     try {
       token = Get.arguments["token"];
+      if (token == null || token == "") {
+        token = getRandomString(32);
+        SharedPreferences.getInstance().then((prefs) {
+          prefs.setString("identity", token);
+        });
+      }
     } catch (_) {
       print(_);
       token = getRandomString(32);
