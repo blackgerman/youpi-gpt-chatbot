@@ -29,7 +29,7 @@ class ChatBubbleWidget extends StatelessWidget {
       onTap: () => ChatController.messageController.value.text = message,
       child: Column(
         children: <Widget>[
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: Random().nextBool()
                 ? MainAxisAlignment.end
@@ -52,7 +52,7 @@ class ChatBubbleWidget extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         this.isLoading
-                            ? CardLoading(
+                            ? const CardLoading(
                                 cardLoadingTheme: CardLoadingTheme(
                                     colorOne: Color(0x11E5E5E5),
                                     colorTwo: Color(0x22AAAAAA)),
@@ -78,7 +78,7 @@ class ChatBubbleWidget extends StatelessWidget {
                                   )),
                                 ],
                               ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
