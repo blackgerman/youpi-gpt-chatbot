@@ -5,7 +5,10 @@ import 'package:front_end/app/intl/messages.dart';
 import 'package:front_end/app/routes/app_pages.dart';
 import 'package:front_end/app/service/AuthService.dart';
 import 'package:get/get.dart';
+import 'package:katana_model/katana_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../main.dart';
 
 class HomeController extends GetxController {
   var identityToken = "".obs;
@@ -21,7 +24,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
   }
 
   @override
@@ -89,6 +91,7 @@ class HomeController extends GetxController {
     SharedPreferences.getInstance().then((prefs) {
       if (phoneNumber.length < 6) phoneNumber = getRandomString(32);
       prefs.setString("identity", phoneNumber);
+      /* save to shared preferences */
       authService.isAuthorized.value = true;
       Future.delayed(const Duration(milliseconds: 500), () {
         Get.offAllNamed("/chat", arguments: {"token": identityToken.value});
