@@ -2,13 +2,9 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:front_end/app/Utils.dart';
 import 'package:front_end/app/intl/messages.dart';
-import 'package:front_end/app/routes/app_pages.dart';
 import 'package:front_end/app/service/AuthService.dart';
 import 'package:get/get.dart';
-import 'package:katana_model/katana_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../main.dart';
 
 class HomeController extends GetxController {
   var identityToken = "".obs;
